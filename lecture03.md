@@ -1,27 +1,27 @@
 # AWSコース第3回講義の受講
 
 ## サンプルアプリケーションの起動画像
-![起動画像](/images/fruits.png)
+![起動画像](images/fruits.png)
 ## APサーバーについて
 
 ### APサーバーのバージョン、名前は？
-![APサーバー](/images/AP-server puma version.png)
+![APサーバー](images/puma-version.png)
 * 名前：Puma
 * バージョン：Puma version: 6.4.2 
 
 ### AP サーバーを終了させた場合、引き続きアクセスできますか？　
-![APサーバー停止](/images/puma shutdown.png)
+![APサーバー停止](images/pumastop.png)
 * 出来ない
 
 ## DBサーバーについて
 
 ### DBサーバーの名前、cloud9で動作しているバージョンの確認
-![DBサーバー](/images/DB-server mysql.png)
+![DBサーバー](images/mysql.png)
 * DBサーバーの名前：mysql
 * バージョン：8.0.36
 
 ### DB サーバーを終了させた場合、引き続きアクセスできますか？
-![DBサーバー停止](/images/DB-server stop.png)
+![DBサーバー停止](images/mysqlstop.png)
 * 出来ない
 
 ### Railsの構成管理ツールの名前は？
