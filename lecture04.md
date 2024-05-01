@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # AWSコース第4回講義の受講
+=======
+# AWSコース第3回講義の受講
+>>>>>>> d3dad0f0a3ba6ca2e6a55efea0f2a3ad48650187
 
 ## VPCの作成
 ![VPC](images2/VPC.png)
@@ -19,7 +23,11 @@
  1 EC2 セキュリティグループ
  * インバウンドルールでssh接続の許可
  * EC2からMYSQLへの接続許可
+<<<<<<< HEAD
  ![EC2-SG](images2/EC2-sg.png)
+=======
+ ！[EC2-SG](images2/EC2-sg.png)
+>>>>>>> d3dad0f0a3ba6ca2e6a55efea0f2a3ad48650187
 
  2 RDS セキュリティグループ
  ![RDS-SG](images2/RDS-sg.png)
