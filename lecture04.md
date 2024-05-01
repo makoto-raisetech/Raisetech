@@ -19,7 +19,7 @@
  1 EC2 セキュリティグループ
  * インバウンドルールでssh接続の許可
  * EC2からMYSQLへの接続許可
- ！[EC2-SG](images2/EC2-sg.png)
+ ![EC2-SG](images2/EC2-sg.png)
 
  2 RDS セキュリティグループ
  ![RDS-SG](images2/RDS-sg.png)
