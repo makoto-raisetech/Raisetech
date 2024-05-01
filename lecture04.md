@@ -1,4 +1,4 @@
-# AWSコース第3回講義の受講
+# AWSコース第4回講義の受講
 
 ## VPCの作成
 ![VPC](images2/VPC.png)
