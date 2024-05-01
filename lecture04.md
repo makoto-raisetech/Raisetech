@@ -28,10 +28,10 @@
 ## サブネットグループ
  * RDSはプライベートサブネットに設定し、外部からのアクセスができないようにする。
  * パブリックサブネットにあるEC2からRDSにアクセスしてDBを操作する。
- ![RDS-subnet-gr](rds-ec2-db-subnet-group-4.png)
- ![subnet-gr1](subnet-group-4-1.png)
- ![subnet-gr2](subnet-group-4-2.png)
- ![subnet-gr3](subnet-group-4-3.png)
+ ![RDS-subnet-gr](images2/rds-ec2-db-subnet-group-4.png)
+ ![subnet-gr1](images2/subnet-group-4-1.png)
+ ![subnet-gr2](images2/subnet-group-4-2.png)
+ ![subnet-gr3](images2/subnet-group-4-3.png)
  
 ## 講義の感想
  * VPC、EC2、RDS の作成においてそれぞれ関連性のあるものを作成するのに時間を費やしてしまった。
