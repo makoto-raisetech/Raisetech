@@ -7,9 +7,9 @@
 - EC2上のWEBサーバーがHTTP通信の場合、通信をのぞき見される危険性があるためSSL(暗号化通信)によってセキュリティを高めたHTTPS通信に変更した方が良い。AWSでHTTPS通信を行うには「Certificate Manager」でパブリック証明書のリクエストを行い設定する必要がある。
 　
 - DDoS攻撃は対処しきれないほどの通信をサーバに送り付けることで、サーバーダウンをさせるサイバー攻撃。AWS環境でもDDoS攻撃を受ける恐れがあるので、対策を取る必要がある。AWSでは下記サービスの利用可能。
-    1. AWS Shield Standard：OSI参照モデルのL3（ネットワーク層）とL4（トランスポート層）へのDDoS攻撃に有効。
-    2. AWS WAF：アプリケーション層への攻撃の対策サービス
-    3. AWS Shield Advanced：AWS Shield Standardの上位サービスであるが費用が超高額のため使用するには十分な検討が必要。　
+    -  AWS Shield Standard：OSI参照モデルのL3（ネットワーク層）とL4（トランスポート層）へのDDoS攻撃に有効。
+    -  AWS WAF：アプリケーション層への攻撃の対策サービス
+    -  AWS Shield Advanced：AWS Shield Standardの上位サービスであるが費用が超高額のため使用するには十分な検討が必要。　
 
 
 
