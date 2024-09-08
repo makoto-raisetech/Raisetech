@@ -6,11 +6,11 @@
 ![CloudFormation](images10/CloudFormation1.png)
 
 ## テンプレートファイル
-- ［VPC］(lecture10template/lecture10-VPC.yml)
-- ［EC2］(lecture10template/lecture10-EC2.yml)
-- ［RDS］(lecture10template/lecture10-RDS.yml)
-- ［ALB］(lecture10template/lecture10-ALB.yml)
-- ［S3］(lecture10template/lecture10-S3.yml)
+- [VPC](/lecture10template/lecture10-VPC.yml)
+- [EC2](/lecture10template/lecture10-EC2.yml)
+- [RDS](/lecture10template/lecture10-RDS.yml)
+- [ALB](/lecture10template/lecture10-ALB.yml)
+- [S3](/lecture10template/lecture10-S3.yml)
 
 
 ## VPC、ネットワークの構築
