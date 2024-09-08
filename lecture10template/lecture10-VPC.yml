@@ -1,0 +1,160 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: lecture10-VPC
+Resources: 
+  SampleVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      Tags:
+        - Key: Name
+          Value: SampleVPC
+  #PublicSubnet1
+  SamplePublicSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: ap-northeast-1a
+      VpcId: !Ref SampleVPC
+      CidrBlock: 10.0.0.0/20
+      Tags:
+        - Key: Name
+          Value: SamplePublicSubnet1 
+  #PublicSubnet2
+  SamplePublicSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: ap-northeast-1c
+      VpcId: !Ref SampleVPC
+      CidrBlock: 10.0.16.0/20
+      Tags:
+        - Key: Name
+          Value: SamplePublicSubnet2
+  #PrivateSubnet1
+  SamplePrivateSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: ap-northeast-1a
+      VpcId: !Ref SampleVPC
+      CidrBlock: 10.0.128.0/20
+      Tags:
+        - Key: Name
+          Value: SamplePrivateSubnet1
+  #PrivateSubnet2
+  SamplePrivateSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: ap-northeast-1c
+      VpcId: !Ref SampleVPC
+      CidrBlock: 10.0.144.0/20
+      Tags:
+        - Key: Name
+          Value: SamplePrivateSubnet2
+  #InternetGateway
+  SampleInternetGateway:
+      Type: AWS::EC2::InternetGateway
+      Properties:
+        Tags:
+          - Key: Name
+            Value: SampleInternetGateway
+  #InternetGatewayAttach
+  SampleAttachGateway:
+      Type: AWS::EC2::VPCGatewayAttachment
+      Properties:
+        VpcId: !Ref  SampleVPC
+        InternetGatewayId: !Ref SampleInternetGateway
+  #PublicRouteTable
+  SamplePublicRouteTable:
+      Type: AWS::EC2::RouteTable
+      Properties:
+        VpcId: !Ref SampleVPC
+        Tags:
+          - Key: Name
+            Value: SamplePublicRouteTable 
+  #PrivateRouteTable
+  SamplePrivateRouteTable1:
+      Type: AWS::EC2::RouteTable
+      Properties:
+        VpcId: !Ref SampleVPC
+        Tags:
+          - Key: Name
+            Value: SamplePrivateRouteTable1
+  SamplePrivateRouteTable2:
+      Type: AWS::EC2::RouteTable
+      Properties:
+        VpcId: !Ref SampleVPC
+        Tags:
+          - Key: Name
+            Value: SamplePrivateRouteTable2
+  # パブリックサブネット１とルートテーブルの関連付け
+  SampleRouteTableAssocPublic1:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref SamplePublicSubnet1
+      RouteTableId: !Ref SamplePublicRouteTable
+  # パブリックサブネット２とルートテーブルの関連付け
+  SampleRouteTableAssocPublic2:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref SamplePublicSubnet2
+      RouteTableId: !Ref SamplePublicRouteTable
+  # プライベートサブネットとルートテーブルの関連付け
+  SampleRouteTableAssocPrivate1:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref SamplePrivateSubnet1 
+      RouteTableId: !Ref SamplePrivateRouteTable1
+  # プライベートサブネットとルートテーブルの関連付け
+  SampleRouteTableAssocPrivate2:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref SamplePrivateSubnet2
+      RouteTableId: !Ref SamplePrivateRouteTable2
+  # インターネットゲートウェイとルートテーブルの関連付け
+  SamplePublicInternetGatewayRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref SamplePublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref SampleInternetGateway
+  SampleEC2SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: SampleEC2SecurityGroup
+      GroupDescription: GroupDescription-SG
+      VpcId: !Ref SampleVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 60.122.83.56/32
+      Tags:
+        - Key: Name
+          Value: SampleEC2SecurityGroup
+Outputs:
+  SamplePublicSubnet1:
+      Value: !Ref SamplePublicSubnet1 
+      Export: 
+        Name: SamplePublicSubnet1
+  SamplePublicSubnet2:
+      Value: !Ref SamplePublicSubnet2
+      Export: 
+        Name: SamplePublicSubnet2
+  SamplePrivateSubnet1:
+      Value: !Ref SamplePrivateSubnet1 
+      Export: 
+        Name: SamplePrivateSubnet1
+  SamplePrivateSubnet2:
+      Value: !Ref SamplePrivateSubnet2 
+      Export: 
+        Name: SamplePrivateSubnet2
+  SampleEC2SecurityGroup:
+      Value: !Ref SampleEC2SecurityGroup
+      Export: 
+        Name: SampleEC2SecurityGroup
+  VPC:
+      Value: !Ref  SampleVPC  
+      Export: 
+        Name: SampleVPC
