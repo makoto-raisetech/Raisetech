@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: lecture10-ALB
+
+Resources: 
+  SampleALB:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Scheme: "internet-facing"
+      Name: SampleALB
+      SecurityGroups:
+        - !Ref SampleALBSecurityGroup
+      Subnets:
+        - !ImportValue SamplePublicSubnet1
+        - !ImportValue SamplePublicSubnet2
+  SampleALBTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name: SampleALBTargetGroup
+      Port: 80
+      Protocol: HTTP
+      Matcher:
+        HttpCode: '200'
+      VpcId: !ImportValue SampleVPC 
+      TargetType: instance
+      Targets:
+        - Id: !ImportValue SampleEC2Instance
+      Tags:
+        - Key: Name
+          Value: SampleALBTargetGroup
+  SampleListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref SampleALBTargetGroup
+      LoadBalancerArn: !Ref SampleALB
+      Port: 80
+      Protocol: HTTP
+  SampleALBSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: SampleALBSecurityGroup
+      GroupDescription: lecture10-ALB-SecurityGroup
+      VpcId: !ImportValue SampleVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp 
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: SampleALBSecurityGroup

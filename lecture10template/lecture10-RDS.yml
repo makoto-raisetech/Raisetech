@@ -1,0 +1,59 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: lecture10-RDS
+Parameters:
+  DBPassword:
+    Description: 'The database admin account password'
+    Type: 'String'
+    NoEcho: 'true' # パスワードの値を出力やログに表示しない
+    MinLength: 8
+    MaxLength: 128
+    AllowedPattern: "[a-zA-Z0-9]*"
+Resources: 
+  SampleRDS:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      AllocatedStorage: 20
+      DBInstanceClass: db.t3.micro
+      AvailabilityZone: ap-northeast-1a
+      DBSubnetGroupName: !Ref SampleRDSDBSubnetGroup
+      DBInstanceIdentifier: SampleRDS
+      DBName: FirstRDS  
+      Engine: mysql
+      EngineVersion: 8.0.35   
+      MasterUsername: admin
+      MasterUserPassword: !Ref DBPassword # パラメータからパスワードを参照
+      MultiAZ: false
+      Port: 3306
+      PubliclyAccessible: false
+      StorageEncrypted: true
+      StorageType: gp2
+      VPCSecurityGroups:
+        - !Ref SampleRDSDBSecurityGroup
+      Tags:
+        - Key: Name
+          Value: SampleRDS
+  SampleRDSDBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: For RDS
+      SubnetIds:
+        - !ImportValue SamplePrivateSubnet1
+        - !ImportValue SamplePrivateSubnet2
+      Tags:
+        - Key: Name
+          Value: SampleRDSDBSubnetGroup
+  SampleRDSDBSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: SampleRDSDBSecurityGroup
+      GroupDescription: GroupDescription-RDS-SG
+      VpcId:  !ImportValue SampleVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 3306
+          ToPort: 3306
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: SampleRDSDBSecurityGroup
+  

@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: lecture10-EC2
+Resources: 
+  SampleEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      KeyName: lecture10
+      DisableApiTermination: true
+      ImageId: ami-03d25459ad01ac2b9
+      InstanceType: t2.micro
+      Monitoring: false
+      SecurityGroupIds:
+        - !ImportValue SampleEC2SecurityGroup
+      SubnetId: !ImportValue SamplePublicSubnet1
+      IamInstanceProfile: !ImportValue SampleInstanceProfile
+      UserData: !Base64 
+        yum update -y
+        yum install -y httpd       
+        service httpd start        
+        chkconfig httpd on
+      Tags:
+        - Key: Name
+          Value: SampleEC2Instance
+  SampleEIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+      InstanceId: !Ref SampleEC2Instance
+Outputs:
+  SampleEC2Instance:
+      Value: !Ref SampleEC2Instance 
+      Export: 
+        Name: SampleEC2Instance
