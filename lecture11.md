@@ -4,7 +4,7 @@
 * SeverSpecのインストール<br>
   $ gem install serverspec<br>
   $ mkdir serverspec<br>  
-  $ cd serverspec<br><br>
+  $ cd serverspec<br>
 
 * ServerSpec初期セットアップ<br>
   $ serverspec-init<br><br>
