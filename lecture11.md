@@ -2,9 +2,9 @@
 
 ## ServerSpecでインフラ環境のテスト実行
 * SeverSpecのインストール
-  $ gem install serverspec
-  $ mkdir serverspec  
-  $ cd serverspec 
+  $ gem install serverspec<br>
+  $ mkdir serverspec<br>  
+  $ cd serverspec
 
 * ServerSpec初期セットアップ
   $ serverspec-init
