@@ -2,12 +2,12 @@
 
 ## ServerSpecでインフラ環境のテスト実行
 * SeverSpecのインストール
-　$ gem install serverspec
-  $ mkdir serverspec  
-  $ cd serverspec 
+- $ gem install serverspec
+- $ mkdir serverspec  
+- $ cd serverspec 
 
 * ServerSpec初期セットアップ
-  $ serverspec-init
+- $ serverspec-init
 ![tree](images11/tree.png)
 
 * sample_spec.rbの編集
