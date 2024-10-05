@@ -18,29 +18,25 @@
 ![tree](images11/tree.png)
 
 * sample_spec.rbの編集
+
 require 'spec_helper'
 
-# Nginxはインストールされているか。
 describe package('nginx') do
   it { should be_installed }
 end
 
-# Nginxは自動起動設定されているか。サービスが上がっているか。
 describe service('nginx') do
   it { should be_running }
 end
 
-# ポート80はLISTENしているか
 describe port(80) do
   it { should be_listening }
 end
 
-# ruby versions
 describe command('ruby -v') do
   its(:stdout) { should match /ruby 3\.2\.3/ }
 end
 
-# Bundler versions
 describe command('bundler --version') do
   its(:stdout){ should match /Bundler version 2\.3\.14/ }
 end
