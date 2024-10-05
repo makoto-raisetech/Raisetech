@@ -3,9 +3,8 @@
 ## ServerSpecでインフラ環境のテスト実行
 * SeverSpecのインストール<br>
   $ gem install serverspec<br>
-  $ mkdir serverspec
-  $ cd serverspec<br>
-
+  $ mkdir serverspec<br>
+  $ cd serverspec<br><br>
 * ServerSpec初期セットアップ<br>
   $ serverspec-init<br><br>
 ![tree](images11/tree.png)
