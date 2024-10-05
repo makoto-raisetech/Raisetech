@@ -8,10 +8,10 @@
 
 * ServerSpec初期セットアップ
   $ serverspec-init
-![tree](images11/tree.png)
+![tree](/images11/tree.png)
 
 * sample_spec.rbの編集
-![sample_spec.rb](images11/lecture11-sample_spec.rb.png)
+![sample_spec.rb](/images11/lecture11-sample_spec.rb.png)
 
 * テスト結果
-！[テスト実行結果](images11/ServerSpec-test.png)
+！[テスト実行結果](/images11/ServerSpec-test.png)
